@@ -14,6 +14,7 @@ function template($filename, $flag = TEMPLATE_DISPLAY) {
 		$source = IA_ROOT . "/web/themes/default/{$filename}.html";
 		$compile = IA_ROOT . "/data/tpl/web/default/{$filename}.tpl.php";
 	}
+
 	
 	if(!is_file($source)) {
 		exit("Error: template source '{$filename}' is not exist!");

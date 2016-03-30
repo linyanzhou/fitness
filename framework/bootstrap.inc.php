@@ -8,17 +8,18 @@ define('STARTTIME', microtime());
 define('IA_ROOT', str_replace("\\", '/', dirname(dirname(__FILE__))));
 define('MAGIC_QUOTES_GPC', (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc()) || @ini_get('magic_quotes_sybase'));
 define('TIMESTAMP', time());
-
 $_W = $_GPC = array();
 $configfile = IA_ROOT . "/data/config.php";
 
 if(!file_exists($configfile)) {
 	if(file_exists(IA_ROOT . '/install.php')) {
+
 		header('Content-Type: text/html; charset=utf-8');
 		echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 		echo "·如果你还没安装本程序，请运行<a href='".(strpos($_SERVER['SCRIPT_NAME'], 'web') === false ? './install.php' : '../install.php')."'> install.php 进入安装&gt;&gt; </a><br/><br/>";
 		exit();
 	} else {
+
 		header('Content-Type: text/html; charset=utf-8');
 		exit('配置文件不存在或是不可读，请检查“data/config”文件或是重新安装！');
 	}

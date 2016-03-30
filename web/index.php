@@ -110,14 +110,18 @@ $acl = array(
 		)
 	)
 );
+
 if (($_W['setting']['copyright']['status'] == 1) && empty($_W['isfounder']) && $controller != 'cloud') {
-	$_W['siteclose'] = true;
+
+
+    $_W['siteclose'] = true;
 	if ($controller == 'account' && $action == 'welcome') {
 		template('account/welcome');
 		exit;
 	}
 	if ($controller == 'user' && $action == 'login') {
-		if (checksubmit()) {
+
+        if (checksubmit()) {
 			require _forward($controller, $action);
 		}
 		template('user/login');
@@ -139,6 +143,7 @@ if(!empty($handle)) {
 if(!in_array($controller, $controllers)) {
 	$controller = 'account';
 }
+
 $init = IA_ROOT . "/web/source/{$controller}/__init.php";
 if(is_file($init)) {
 	require $init;
@@ -168,9 +173,10 @@ $_W['page'] = array();
 $_W['page']['copyright'] = $_W['setting']['copyright'];
 
 if(is_array($acl[$controller]['direct']) && in_array($action, $acl[$controller]['direct'])) {
-		require _forward($controller, $action);
+	require _forward($controller, $action);
 	exit;
 }
+
 if(is_array($acl[$controller]['founder']) && in_array($action, $acl[$controller]['founder'])) {
 		if(!$_W['isfounder']) {
 		message('不能访问, 需要创始人权限才能访问.');
@@ -202,6 +208,7 @@ if ((ENDTIME - STARTTIME) > $_W['config']['setting']['maxtimeurl']) {
 
 function _forward($c, $a) {
 	$file = IA_ROOT . '/web/source/' . $c . '/' . $a . '.ctrl.php';
+    //echo $file;exit;
 	return $file;
 }
 
